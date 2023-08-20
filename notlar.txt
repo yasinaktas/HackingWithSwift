@@ -1,0 +1,71 @@
+Camel Case swiftte standart -> yasinAktas
+Swiftte satır sonunda virgül kullanmıyoruz ama aynı satırda birden fazla kod yazacaksak virgülle ayırırız.
+Multiline Strings için """ kullanıyoruz. Fakat stringden izole olmalılar (üstte ve altta ayrı olarak)
+.count -> Parantezi yok çünkü swifte iş yaptırmıyoruz
+.uppercased()
+.hasPrefix("A B")
+.hasSuffix(".png")
++= -= *= /= -> Compound assignment operators
+.isMultiple(of:3)
+Swift farklı türleri karıştırmamızı istemez -> let c = a + Int(b)
+.toggle() -> !
+
+ARRAYS
+var colors = [String]
+var colors: [String] = ["red","purple"]
+var colors = Array<String>()
+var colors = ["red","purple"]
+colors.append("yellow")
+colors.remove(at:1)
+colors.removeAll()
+colors.count
+
+DICTIONARIES
+let employee = ["name":"yasin","surname":"aktas"]
+print(employee["name"]) -> eğer boşsa hata verebilir -> default eklemeliyiz
+print(employee["name",default:"not_exist"])
+var employees = [String:Int]()
+Birden fazla ekleme yapamıyoruz
+Index yok
+.count
+
+SETS
+Burada da index yok
+Duplicate yok
+Set() içine array alıyor ve duplicateleri eliyor
+var people = Set<String>()
+Sıra olmadığı için append değil de insert kullanıyoruz
+people.insert("yasin")
+Çok optimize bir şekilde elemanları dizdiği için .contains("yasin") çalıştırmak normal array'e kıyasla çok daha hızlı sonuç verir
+.count
+.sorted()
+
+ENUMS
+Elimizdeki benzer verileri daha kolay gruplayabilmek ve ihtiyacımız olduğunda daha rahat kullanabilmek için kullanırız, haftanın günlerini sayı olarak tutmaktansa isimleriyle tutmak işimizi çok daha kolaylaştırır
+enum Weekday{
+	case monday
+	case tuesday
+	case wednesday
+	case thursday
+	case friday
+}
+enum Weekday{
+	case monday, tuesday, wednesday, thursday, friday
+}
+var day = Weekday.monday
+day = Weekday.tuesday
+day = .wednesday
+
+TYPE ANNOTATION
+Değişken tanımlarken türünü açıkça belirtmemizdir -> Belirtmiyorsak type inference olur
+var name : String
+var score : Double = 0 -> type annotation yapmasaydık swift bu değişkenin integer olduğuna karar verecekti
+var names: [String] = ["yasin"
+,"celal","ömer"]
+var names = [String]() -> tercih edilen
+var names:[String] = [String]()
+var user: [String,String] = ["yasin":"aktas"]
+var user: Set<String> = Set(["yasin"])
+Değişkenimiz başta boş olacaksa type annotation kullanmamız gerekir
+Internetten veri çekeceksek kullanmamız gerekebilir, swift gelecek verinin tipini kestiremeyebilir, yardımcı olmamız gerekir
+Type inference kodu kısa olmasını sağlar (Yazılımcıdan yazılımcıya değişir)
