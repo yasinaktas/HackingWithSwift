@@ -69,3 +69,71 @@ var user: Set<String> = Set(["yasin"])
 Değişkenimiz başta boş olacaksa type annotation kullanmamız gerekir
 Internetten veri çekeceksek kullanmamız gerekebilir, swift gelecek verinin tipini kestiremeyebilir, yardımcı olmamız gerekir
 Type inference kodu kısa olmasını sağlar (Yazılımcıdan yazılımcıya değişir)
+
+IF
+İki stringi alfabetik olarak karşılaştırabiliyoruz
+Bir string boş mu değil mi diye kontrol etmek istediğimizde .isEmpty en ideal olandır, bundan sonra  == "" gelir, sonra .count==0
+Enum değerlerini de karşılaştırabiliyoruz, önce yazılan küçük değer alıyor diyebiliriz
+enum Size : Comparable{
+	case small
+	case medium
+	case large
+}
+Size.small < Size.large
+Farklı türler karşılaştırılamaz, örneğin int ve double
+
+SWITCH
+var size = Size.small
+switch size{
+	case small:
+		print("small")
+		fallthrough -> sonrakileri de gerçekleştir, doğru olmasa bile
+	case large:
+		print("large")
+	default:
+		print("unknown")
+}
+
+TERNARY OPERATOR (WTF)
+What-True-False
+var status = 10 > 15 ? "Smaller" : "Bigger"
+print(10 > 15 ? "Smaller" : "Bigger")
+
+FOR LOOP
+for name in names{
+	print("My name is \(name)")
+}
+-> name'i kendisi oluşturdu
+for i in 1...5{
+}
+for i in 1..<5{
+}
+for _ in 1...5{
+}
+_ -> değişkeni kullanmayacaksak underscore kullanıyoruz
+
+RANGE
+print(names[1...3])
+print(names[1...])
+
+WHILE LOOP
+var index = 0
+while index < 10{
+	index++
+}
+Serverdan bilgi alıyorsak, beklediğimiz sonuç gerçekleşene kadar beklememiz gerekiyosa while kullanırız
+
+RANDOM
+let id = Int.random(in: 1...1000)
+
+CONTINUE
+Döngüde continue denk geldiğinde o iterasyon atlanır
+
+BREAK
+Döngüde break denk geldiğinde döngü sonlandırılır
+
+LABELED STATEMENT
+nested looplarda herhangi bir döngü içi break veya continue kullanmamız gerekirse
+outer_loop for i in 1..5{
+	break outer_loop
+}
