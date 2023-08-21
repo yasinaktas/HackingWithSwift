@@ -181,3 +181,43 @@ Dictionary'e göre ana avantajı return edeceğimiz değerin kesinlikle var olac
 let (firstName, lastName) = getUser()
 let (firstName, _) = getUser()
 
+DEFAULT PARAMETER VALUE
+Fonksiyon parametresine değer atarsak, fonksiyon çağırılırken bu parametre eklenmeden de çağırılabilir.
+func sumNumbers(num1:Int,num2:Int = 5) -> Int{
+	num1 + num2
+}
+sumNumbers(num1:10)
+.removeAll(keepingCapacity:true) -> bir arrayimiz var, içini boşaltacağız fakat kapladığı alan kalsın istiyoruz
+
+ERROR HANDLING
+Öncelikle hataları içeren bir enum oluşturuyoruz
+enum PasswordError: Error{
+	case short,obvious
+}
+Sonra errorları kontrol edecek fonksiyonları yazıyoruz, bu fonksiyonlar süslü parantezlerden önce throw -> String içermeli, String farklı olabilir
+func checkPassword(_ password: String) throws -> String {
+    if password.count < 5 {
+        throw PasswordError.short
+    }
+    if password == "12345" {
+        throw PasswordError.obvious
+    }
+    if password.count < 8 {
+        return "OK"
+    } else if password.count < 10 {
+        return "Good"
+    } else {
+        return "Excellent"
+    }
+}
+throw var diye illa hata fırlatacak değil
+Bu fonksiyonu do try catch bloğu içinde yazarız
+do{
+	let passQuality = try checkPassword("12345")
+	print("The password quality is \(passQuality)")
+}catch PasswordError.short{
+	print("Weak Password")
+	error.localizedDescription
+}
+try! kullanırsak do catch bloklarına ihtiyacımız olmaz fakat hata alırsak program çöker
+
