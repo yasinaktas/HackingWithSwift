@@ -93,6 +93,7 @@ switch size{
 	default:
 		print("unknown")
 }
+enum tarzı değişkenlerde tüm seçenekleri eklemeliyiz, yoksa default eklemeliyiz, sayılarla ilgiliyse default eklemeliyiz
 
 TERNARY OPERATOR (WTF)
 What-True-False
@@ -137,3 +138,46 @@ nested looplarda herhangi bir döngü içi break veya continue kullanmamız gere
 outer_loop for i in 1..5{
 	break outer_loop
 }
+
+FUNCTIONS
+func displayMessage(){
+	print("Welcome")
+}
+func displayName(name:String){
+	print(name)
+}
+displayName(name:"Yasin") -> Parametrenin başına adını da yazıyoruz, bu diğer dillerde yaygın değil fakat okunurluğu kolaylaştıryor
+Eğer parametre adının başına underscore _ koyarsa, fonksiyonu çağırdığımızda bu parametre adını yazmayız, aslında iki isim yazabiliriz ilki external(argument name) ikincisi internal(parameter name) isim olur
+func displayName(_ name:String){
+	print(name)
+}
+displayName("Yasin")
+func displayName(isim name:String){
+	print(name)
+}
+displayName(isim:"Yasin")
+Parameter -> Placeholder
+Argument -> Actual Value
+(Verilen argument, alınan parameter denilebilir)
+Fonksiyon içinde oluşturulan değişkenler, fonksiyon tamamlanınca otomatik olarak kaldırılır
+
+RETURN
+Süslü parantezden önce ok koyup veritipi belirtiyoruz, sonra fonksiyon içinde bu veri tipinde return yapıyoruz
+func sumNumbers (num1: Int, num2: Int) -> Int {
+	return num1 + num2
+}
+Fonksiyon tek satırdan oluşuyorsa return ifadesini kaldırabiliriz -> Expressions are things that can be assigned to a variable, or printed using print() -> Ternary de kullanabilirz tek satır için
+
+MULTIPLE RETURN
+Return type'ı array veya dictionary yaparak birden fazla değeri return edebiliriz (Kötü yöntemler)
+Return type'ı sanki parametre parantezleri gibi yazabiliriz ve buna TUPLES denir
+func getUser() -> (firstName: String, lastName: String) {
+    (firstName: "Taylor", lastName: "Swift")
+}
+let user = getUser()
+print("Name: \(user.firstName) \(user.lastName)")
+user.0, user.1 de olur
+Dictionary'e göre ana avantajı return edeceğimiz değerin kesinlikle var olacak olmasıdır, dictionary'de default kullanmamız gerekecekti
+let (firstName, lastName) = getUser()
+let (firstName, _) = getUser()
+
