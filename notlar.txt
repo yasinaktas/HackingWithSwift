@@ -221,3 +221,51 @@ do{
 }
 try! kullanırsak do catch bloklarına ihtiyacımız olmaz fakat hata alırsak program çöker
 
+CLOSURES
+Swiftin en kompleks yapılarından biri diyebiliriz
+SwiftUI da çok fazla kullanılıyor
+Değişkenlere doğrudan atayabildiğimiz fonksiyonlar diyebiliriz veya bir fonksiyonu başka bir fonksiyona parametre olarak veriyormuşuz gibi de düşünülebilir
+func sayHello(){
+	print("Hello")
+}
+var sayHello2 = sayHello
+sayHello2()
+Şu şekilde de yazabilirdik
+var sayHello2 : () -> Void = sayHello
+Burada parametre kısmını ='den sonra yapsaydık tuples ile karıştırılırdı
+Fonksiyondan fonksiyon ürettik, o zaman doğrudan bir değişkenden de fonksiyon üretebiliriz
+let sayHello3 = {
+	print("Hello")
+}
+sayHello3()
+Bu fonksiyonumsulara parametre verip return bile ettirebiliriz, bunun için "in" keywordunu kullanacağız ve bunu süslü parantezlerin içinde yapacağız, "in" keywordu body'nin nereden itibaren başladığını belirtecek
+let sayHello4 = { (name:String) -> String in
+		print("Hello \(name)")
+} 
+External parameter name sadece doğrudan fonksiyon oluşturduğumuz zaman önemli, closurlarda kullanmıyoruz!
+Bazen bir fonksiyonu başka bir fonksiyona parametre olarak vermemiz gerekebilir, böyle durumlarda ayrıca fonksiyon yazmak yerine doğruca closurlardan faydalanabiliriz.Örneğin .sorted(by:customSortFunction) şeklinde fonksiyon alabilir. Bu fonksiyon 2 string almalı ve geriye bool döndürmeli
+.sorted(by:{ (name1:String,name2:String) -> Bool in
+	if(name1>name2){
+		return true
+	}
+	return false
+})
+Colusurları neden kullanırız: İndirme bittikten sonra işlem yapacağımızda, animasyon tamamlanınca işlem yapacağımızda, delay vermek istediğimizde, menüden seçim yapıldığında işlem yapmak istediğimizde...
+Hazır fonksiyonlara closure eklemek istediğimizde zaten istenen parametreler ve return type belli olduğundan bunları yazmaya da biliriz.
+by:{name1,name2 in
+Hatta by: da yazmayabiliriz
+{name1,name2 in
+Hatta parametre adlarını yazmayıp bunun yerine $0,$1 gibi swiftin default değerlerini de kullanabiliriz, böylece in keywordunu de kullanmamız gerekmez
+{return $0 > $1}
+Tek satıra düşünce return keywordunu de kullanmamız gerekmez
+{$0 > $1}
+.filter() ve .map() komutları da closure kullanabileceğimiz fonksiyolardır.
+.filter() bir arrayin tüm elemanları üzerinde bir fonksiyon uygular ve true dönenleri yeni bir array olarak döndürür
+.filter({$0.hasPrefix("Y")})
+.öap() bir arrayin tüm elemanlarına verilen fonksiyonu uygular ve yeni array olarak döndürür
+.map({$0.uppercased()})
+Bir fonksiyon birden fazla closure alıyorsa, bu fonksiyonu çağırırken ilk closur normal çağırılıyor fakat sonrakiler için label da yazılmalı
+doSomething(){
+}label2:{
+}label3:{
+}
