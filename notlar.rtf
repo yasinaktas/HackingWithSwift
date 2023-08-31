@@ -1,0 +1,534 @@
+{\rtf1\ansi\ansicpg1254\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red235\green0\blue121;\red24\green24\blue28;\red246\green246\blue239;
+\red103\green225\blue255;\red157\green101\blue255;\red72\green212\blue251;\red248\green60\blue79;\red74\green200\blue164;
+}
+{\*\expandedcolortbl;;\cssrgb\c94902\c14118\c54902;\cssrgb\c12549\c12549\c14510;\cssrgb\c97255\c97255\c94902;
+\cssrgb\c46275\c90196\c100000;\cssrgb\c68235\c50588\c100000;\cssrgb\c32941\c86275\c98824;\cssrgb\c98824\c33725\c38039;\cssrgb\c33725\c81569\c70196;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10900\viewh18140\viewkind0
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 \kerning1\expnd1\expndtw5
+Camel Case swiftte standart -> yasinAktas\
+Swiftte sat\uc0\u305 r sonunda virg\'fcl kullanm\u305 yoruz ama ayn\u305  sat\u305 rda birden fazla kod yazacaksak virg\'fclle ay\u305 r\u305 r\u305 z.\
+Multiline Strings i\'e7in """ kullan\uc0\u305 yoruz. Fakat stringden izole olmal\u305 lar (\'fcstte ve altta ayr\u305  olarak)\
+.count -> Parantezi yok \'e7\'fcnk\'fc swifte i\uc0\u351  yapt\u305 rm\u305 yoruz\
+.uppercased()\
+.hasPrefix("A B")\
+.hasSuffix(".png")\
++= -= *= /= -> Compound assignment operators\
+.isMultiple(of:3)\
+Swift farkl\uc0\u305  t\'fcrleri kar\u305 \u351 t\u305 rmam\u305 z\u305  istemez -> let c = a + Int(b)\
+.toggle() -> !\
+\
+ARRAYS\
+var colors = [String]\
+var colors: [String] = ["red","purple"]\
+var colors = Array<String>()\
+var colors = ["red","purple"]\
+colors.append("yellow")\
+colors.remove(at:1)\
+colors.removeAll()\
+colors.count\
+\
+DICTIONARIES\
+let employee = ["name":"yasin","surname":"aktas"]\
+print(employee["name"]) -> e\uc0\u287 er bo\u351 sa hata verebilir -> default eklemeliyiz\
+print(employee["name",default:"not_exist"])\
+var employees = [String:Int]()\
+Birden fazla ekleme yapam\uc0\u305 yoruz\
+Index yok\
+.count\
+\
+SETS\
+Burada da index yok\
+Duplicate yok\
+Set() i\'e7ine array al\uc0\u305 yor ve duplicateleri eliyor\
+var people = Set<String>()\
+S\uc0\u305 ra olmad\u305 \u287 \u305  i\'e7in append de\u287 il de insert kullan\u305 yoruz\
+people.insert("yasin")\
+\'c7ok optimize bir \uc0\u351 ekilde elemanlar\u305  dizdi\u287 i i\'e7in .contains("yasin") \'e7al\u305 \u351 t\u305 rmak normal array'e k\u305 yasla \'e7ok daha h\u305 zl\u305  sonu\'e7 verir\
+.count\
+.sorted()\
+\
+ENUMS\
+Elimizdeki benzer verileri daha kolay gruplayabilmek ve ihtiyac\uc0\u305 m\u305 z oldu\u287 unda daha rahat kullanabilmek i\'e7in kullan\u305 r\u305 z, haftan\u305 n g\'fcnlerini say\u305  olarak tutmaktansa isimleriyle tutmak i\u351 imizi \'e7ok daha kolayla\u351 t\u305 r\u305 r\
+enum Weekday\{\
+	case monday\
+	case tuesday\
+	case wednesday\
+	case thursday\
+	case friday\
+\}\
+enum Weekday\{\
+	case monday, tuesday, wednesday, thursday, friday\
+\}\
+var day = Weekday.monday\
+day = Weekday.tuesday\
+day = .wednesday\
+\
+TYPE ANNOTATION\
+De\uc0\u287 i\u351 ken tan\u305 mlarken t\'fcr\'fcn\'fc a\'e7\u305 k\'e7a belirtmemizdir -> Belirtmiyorsak type inference olur\
+var name : String\
+var score : Double = 0 -> type annotation yapmasayd\uc0\u305 k swift bu de\u287 i\u351 kenin integer oldu\u287 una karar verecekti\
+var names: [String] = ["yasin"\
+,"celal","\'f6mer"]\
+var names = [String]() -> tercih edilen\
+var names:[String] = [String]()\
+var user: [String,String] = ["yasin":"aktas"]\
+var user: Set<String> = Set(["yasin"])\
+De\uc0\u287 i\u351 kenimiz ba\u351 ta bo\u351  olacaksa type annotation kullanmam\u305 z gerekir\
+Internetten veri \'e7ekeceksek kullanmam\uc0\u305 z gerekebilir, swift gelecek verinin tipini kestiremeyebilir, yard\u305 mc\u305  olmam\u305 z gerekir\
+Type inference kodu k\uc0\u305 sa olmas\u305 n\u305  sa\u287 lar (Yaz\u305 l\u305 mc\u305 dan yaz\u305 l\u305 mc\u305 ya de\u287 i\u351 ir)\
+\
+IF\
+\uc0\u304 ki stringi alfabetik olarak kar\u351 \u305 la\u351 t\u305 rabiliyoruz\
+Bir string bo\uc0\u351  mu de\u287 il mi diye kontrol etmek istedi\u287 imizde .isEmpty en ideal oland\u305 r, bundan sonra  == "" gelir, sonra .count==0\
+Enum de\uc0\u287 erlerini de kar\u351 \u305 la\u351 t\u305 rabiliyoruz, \'f6nce yaz\u305 lan k\'fc\'e7\'fck de\u287 er al\u305 yor diyebiliriz\
+enum Size : Comparable\{\
+	case small\
+	case medium\
+	case large\
+\}\
+Size.small < Size.large\
+Farkl\uc0\u305  t\'fcrler kar\u351 \u305 la\u351 t\u305 r\u305 lamaz, \'f6rne\u287 in int ve double\
+\
+SWITCH\
+var size = Size.small\
+switch size\{\
+	case small:\
+		print("small")\
+		fallthrough -> sonrakileri de ger\'e7ekle\uc0\u351 tir, do\u287 ru olmasa bile\
+	case large:\
+		print("large")\
+	default:\
+		print("unknown")\
+\}\
+enum tarz\uc0\u305  de\u287 i\u351 kenlerde t\'fcm se\'e7enekleri eklemeliyiz, yoksa default eklemeliyiz, say\u305 larla ilgiliyse default eklemeliyiz\
+\
+TERNARY OPERATOR (WTF)\
+What-True-False\
+var status = 10 > 15 ? "Smaller" : "Bigger"\
+print(10 > 15 ? "Smaller" : "Bigger")\
+\
+FOR LOOP\
+for name in names\{\
+	print("My name is \\(name)")\
+\}\
+-> name'i kendisi olu\uc0\u351 turdu\
+for i in 1...5\{\
+\}\
+for i in 1..<5\{\
+\}\
+for _ in 1...5\{\
+\}\
+_ -> de\uc0\u287 i\u351 keni kullanmayacaksak underscore kullan\u305 yoruz\
+\
+RANGE\
+print(names[1...3])\
+print(names[1...])\
+\
+WHILE LOOP\
+var index = 0\
+while index < 10\{\
+	index++\
+\}\
+Serverdan bilgi al\uc0\u305 yorsak, bekledi\u287 imiz sonu\'e7 ger\'e7ekle\u351 ene kadar beklememiz gerekiyosa while kullan\u305 r\u305 z\
+\
+RANDOM\
+let id = Int.random(in: 1...1000)\
+\
+CONTINUE\
+D\'f6ng\'fcde continue denk geldi\uc0\u287 inde o iterasyon atlan\u305 r\
+\
+BREAK\
+D\'f6ng\'fcde break denk geldi\uc0\u287 inde d\'f6ng\'fc sonland\u305 r\u305 l\u305 r\
+\
+LABELED STATEMENT\
+nested looplarda herhangi bir d\'f6ng\'fc i\'e7i break veya continue kullanmam\uc0\u305 z gerekirse\
+outer_loop for i in 1..5\{\
+	break outer_loop\
+\}\
+\
+FUNCTIONS\
+func displayMessage()\{\
+	print("Welcome")\
+\}\
+func displayName(name:String)\{\
+	print(name)\
+\}\
+displayName(name:"Yasin") -> Parametrenin ba\uc0\u351 \u305 na ad\u305 n\u305  da yaz\u305 yoruz, bu di\u287 er dillerde yayg\u305 n de\u287 il fakat okunurlu\u287 u kolayla\u351 t\u305 ryor\
+E\uc0\u287 er parametre ad\u305 n\u305 n ba\u351 \u305 na underscore _ koyarsa, fonksiyonu \'e7a\u287 \u305 rd\u305 \u287 \u305 m\u305 zda bu parametre ad\u305 n\u305  yazmay\u305 z, asl\u305 nda iki isim yazabiliriz ilki external(argument name) ikincisi internal(parameter name) isim olur\
+func displayName(_ name:String)\{\
+	print(name)\
+\}\
+displayName("Yasin")\
+func displayName(isim name:String)\{\
+	print(name)\
+\}\
+displayName(isim:"Yasin")\
+Parameter -> Placeholder\
+Argument -> Actual Value\
+(Verilen argument, al\uc0\u305 nan parameter denilebilir)\
+Fonksiyon i\'e7inde olu\uc0\u351 turulan de\u287 i\u351 kenler, fonksiyon tamamlan\u305 nca otomatik olarak kald\u305 r\u305 l\u305 r\
+\
+RETURN\
+S\'fcsl\'fc parantezden \'f6nce ok koyup veritipi belirtiyoruz, sonra fonksiyon i\'e7inde bu veri tipinde return yap\uc0\u305 yoruz\
+func sumNumbers (num1: Int, num2: Int) -> Int \{\
+	return num1 + num2\
+\}\
+Fonksiyon tek sat\uc0\u305 rdan olu\u351 uyorsa return ifadesini kald\u305 rabiliriz -> Expressions are things that can be assigned to a variable, or printed using print() -> Ternary de kullanabilirz tek sat\u305 r i\'e7in\
+\
+MULTIPLE RETURN\
+Return type'\uc0\u305  array veya dictionary yaparak birden fazla de\u287 eri return edebiliriz (K\'f6t\'fc y\'f6ntemler)\
+Return type'\uc0\u305  sanki parametre parantezleri gibi yazabiliriz ve buna TUPLES denir\
+func getUser() -> (firstName: String, lastName: String) \{\
+    (firstName: "Taylor", lastName: "Swift")\
+\}\
+let user = getUser()\
+print("Name: \\(user.firstName) \\(user.lastName)")\
+user.0, user.1 de olur\
+Dictionary'e g\'f6re ana avantaj\uc0\u305  return edece\u287 imiz de\u287 erin kesinlikle var olacak olmas\u305 d\u305 r, dictionary'de default kullanmam\u305 z gerekecekti\
+let (firstName, lastName) = getUser()\
+let (firstName, _) = getUser()\
+\
+DEFAULT PARAMETER VALUE\
+Fonksiyon parametresine de\uc0\u287 er atarsak, fonksiyon \'e7a\u287 \u305 r\u305 l\u305 rken bu parametre eklenmeden de \'e7a\u287 \u305 r\u305 labilir.\
+func sumNumbers(num1:Int,num2:Int = 5) -> Int\{\
+	num1 + num2\
+\}\
+sumNumbers(num1:10)\
+.removeAll(keepingCapacity:true) -> bir arrayimiz var, i\'e7ini bo\uc0\u351 altaca\u287 \u305 z fakat kaplad\u305 \u287 \u305  alan kals\u305 n istiyoruz\
+\
+ERROR HANDLING\
+\'d6ncelikle hatalar\uc0\u305  i\'e7eren bir enum olu\u351 turuyoruz\
+enum PasswordError: Error\{\
+	case short,obvious\
+\}\
+Sonra errorlar\uc0\u305  kontrol edecek fonksiyonlar\u305  yaz\u305 yoruz, bu fonksiyonlar s\'fcsl\'fc parantezlerden \'f6nce throw -> String i\'e7ermeli, String farkl\u305  olabilir\
+func checkPassword(_ password: String) throws -> String \{\
+    if password.count < 5 \{\
+        throw PasswordError.short\
+    \}\
+    if password == "12345" \{\
+        throw PasswordError.obvious\
+    \}\
+    if password.count < 8 \{\
+        return "OK"\
+    \} else if password.count < 10 \{\
+        return "Good"\
+    \} else \{\
+        return "Excellent"\
+    \}\
+\}\
+throw var diye illa hata f\uc0\u305 rlatacak de\u287 il\
+Bu fonksiyonu do try catch blo\uc0\u287 u i\'e7inde yazar\u305 z\
+do\{\
+	let passQuality = try checkPassword("12345")\
+	print("The password quality is \\(passQuality)")\
+\}catch PasswordError.short\{\
+	print("Weak Password")\
+	error.localizedDescription\
+\}\
+try! kullan\uc0\u305 rsak do catch bloklar\u305 na ihtiyac\u305 m\u305 z olmaz fakat hata al\u305 rsak program \'e7\'f6ker\
+\
+CLOSURES\
+Swiftin en kompleks yap\uc0\u305 lar\u305 ndan biri diyebiliriz\
+SwiftUI da \'e7ok fazla kullan\uc0\u305 l\u305 yor\
+De\uc0\u287 i\u351 kenlere do\u287 rudan atayabildi\u287 imiz fonksiyonlar diyebiliriz veya bir fonksiyonu ba\u351 ka bir fonksiyona parametre olarak veriyormu\u351 uz gibi de d\'fc\u351 \'fcn\'fclebilir\
+func sayHello()\{\
+	print("Hello")\
+\}\
+var sayHello2 = sayHello\
+sayHello2()\
+\uc0\u350 u \u351 ekilde de yazabilirdik\
+var sayHello2 : () -> Void = sayHello\
+Burada parametre k\uc0\u305 sm\u305 n\u305  ='den sonra yapsayd\u305 k tuples ile kar\u305 \u351 t\u305 r\u305 l\u305 rd\u305 \
+Fonksiyondan fonksiyon \'fcrettik, o zaman do\uc0\u287 rudan bir de\u287 i\u351 kenden de fonksiyon \'fcretebiliriz\
+let sayHello3 = \{\
+	print("Hello")\
+\}\
+sayHello3()\
+Bu fonksiyonumsulara parametre verip return bile ettirebiliriz, bunun i\'e7in "in" keywordunu kullanaca\uc0\u287 \u305 z ve bunu s\'fcsl\'fc parantezlerin i\'e7inde yapaca\u287 \u305 z, "in" keywordu body'nin nereden itibaren ba\u351 lad\u305 \u287 \u305 n\u305  belirtecek\
+let sayHello4 = \{ (name:String) -> String in\
+		print("Hello \\(name)")\
+\} \
+External parameter name sadece do\uc0\u287 rudan fonksiyon olu\u351 turdu\u287 umuz zaman \'f6nemli, closurlarda kullanm\u305 yoruz!\
+Bazen bir fonksiyonu ba\uc0\u351 ka bir fonksiyona parametre olarak vermemiz gerekebilir, b\'f6yle durumlarda ayr\u305 ca fonksiyon yazmak yerine do\u287 ruca closurlardan faydalanabiliriz.\'d6rne\u287 in .sorted(by:customSortFunction) \u351 eklinde fonksiyon alabilir. Bu fonksiyon 2 string almal\u305  ve geriye bool d\'f6nd\'fcrmeli\
+.sorted(by:\{ (name1:String,name2:String) -> Bool in\
+	if(name1>name2)\{\
+		return true\
+	\}\
+	return false\
+\})\
+Colusurlar\uc0\u305  neden kullan\u305 r\u305 z: \u304 ndirme bittikten sonra i\u351 lem yapaca\u287 \u305 m\u305 zda, animasyon tamamlan\u305 nca i\u351 lem yapaca\u287 \u305 m\u305 zda, delay vermek istedi\u287 imizde, men\'fcden se\'e7im yap\u305 ld\u305 \u287 \u305 nda i\u351 lem yapmak istedi\u287 imizde...\
+Haz\uc0\u305 r fonksiyonlara closure eklemek istedi\u287 imizde zaten istenen parametreler ve return type belli oldu\u287 undan bunlar\u305  yazmaya da biliriz.\
+by:\{name1,name2 in\
+Hatta by: da yazmayabiliriz\
+\{name1,name2 in\
+Hatta parametre adlar\uc0\u305 n\u305  yazmay\u305 p bunun yerine $0,$1 gibi swiftin default de\u287 erlerini de kullanabiliriz, b\'f6ylece in keywordunu de kullanmam\u305 z gerekmez\
+\{return $0 > $1\}\
+Tek sat\uc0\u305 ra d\'fc\u351 \'fcnce return keywordunu de kullanmam\u305 z gerekmez\
+\{$0 > $1\}\
+.filter() ve .map() komutlar\uc0\u305  da closure kullanabilece\u287 imiz fonksiyolard\u305 r.\
+.filter() bir arrayin t\'fcm elemanlar\uc0\u305  \'fczerinde bir fonksiyon uygular ve true d\'f6nenleri yeni bir array olarak d\'f6nd\'fcr\'fcr\
+.filter(\{$0.hasPrefix("Y")\})\
+.\'f6ap() bir arrayin t\'fcm elemanlar\uc0\u305 na verilen fonksiyonu uygular ve yeni array olarak d\'f6nd\'fcr\'fcr\
+.map(\{$0.uppercased()\})\
+Bir fonksiyon birden fazla closure al\uc0\u305 yorsa, bu fonksiyonu \'e7a\u287 \u305 r\u305 rken ilk closur normal \'e7a\u287 \u305 r\u305 l\u305 yor fakat sonrakiler i\'e7in label da yaz\u305 lmal\u305 \
+doSomething()\{\
+\}label2:\{\
+\}label3:\{\
+\}\
+\
+STRUCTS\
+Basit veri tiplerinden daha kompleks veri tipi olu\uc0\u351 turmam\u305 z\u305  sa\u287 lar, kendi fonksiyonlar\u305 n\u305  i\'e7erebilir\
+Di\uc0\u287 er veri tiplerinde de oldu\u287 u gibi struct adlar\u305 n\u305  da b\'fcy\'fck harfle ba\u351 lat\u305 yoruz\
+Struct'a ait de\uc0\u287 i\u351 kenlere properties denir\
+Struct'a ait fonksiyonlara methods denir, fonksiyondan tek fark\uc0\u305  struct, enum, class gibi bir yap\u305 ya ait olmas\u305 d\u305 r ve bu yap\u305 lar\u305 n i\'e7indeki de\u287 i\u351 kenleri kullanabilmesidir\
+Bir struct'tan nesne olu\uc0\u351 turdu\u287 umuzda buna instance denir, bu olu\u351 turmaya da initializer denir, burada swift gizlice .init fonksiyonunu \'e7a\u287 \u305 r\u305 r!\
+\
+struct User\{\
+	let name: String\
+	let age: Int\
+\
+	func printSummary()\{\
+		print("\\(name) - \\(age)")\
+	\}\
+\}\
+let user = User(name:"Yasin",age:25)\
+let user = User.init(name:"Yasin",age:25)\
+print(user.name)\
+user.printSummary()\
+Yeni nesne olu\uc0\u351 tururken tan\u305 mlama s\u305 ram\u305 za g\'f6re parametreleri giriyoruz.\
+Yeni nesnemizi let ile olu\uc0\u351 turdu\u287 umuz i\'e7in e\u287 er struct i\'e7indeki fonksiyon ile bu struct de\u287 i\u351 kenlerinden birini de\u287 i\u351 tirmek istersek func keyword\'fcn\'fcn ba\u351 \u305 na "mutating eklemeliyiz"\
+struct User\{\
+	let name: String\
+	var age: Int\
+	\
+	mutating func incAge(by:Int)\{\
+		age += by\
+	\}\
+\}\
+\
+Struct'\uc0\u305 n tuples'dan fark\u305  tekrar tekrar kullan\u305 ma uygun olmas\u305 d\u305 r.\
+func displayUser(user: (name:String, age:Int))\
+func displayUser(user: User)\
+\
+STORED PROPERTY - COMPUTED PROPERTY\
+Stored property struct i\'e7inde depolanm\uc0\u305 \u351  de\u287 i\u351 kenlerdir, computed property ise her eri\u351 ildi\u287 inde tekrar hesaplan\u305 r (getter & setter)\
+\
+user.age = 10 dedi\uc0\u287 imizde bunun orijinal halini kaybederiz\
+\
+struct User\{\
+	var vacationRemaining\{\
+		get\{\
+			vacationAllocated - vacationTaken\
+		\}\
+		set\{\
+			newValue (Bunu swift otomatik tan\uc0\u305 ml\u305 yor, bunu kullanarak yeni de\u287 er atamas\u305  yap\u305 yoruz)\
+			vacationAllocated = vacationTaken - newValue\
+		\}\
+	\}\
+\}\
+Bir de\uc0\u287 i\u351 keni fazla de\u287 i\u351 tirmeden \'e7ok\'e7a okuyorsak stored olarak tan\u305 mlamam\u305 z performans a\'e7\u305 s\u305 ndan daha iyidir\
+Bir de\uc0\u287 i\u351 ken ba\u351 ka de\u287 i\u351 kenlere ba\u287 \u305 ml\u305 ysa computed kullan\u305 labilir\
+\
+PROPERTY OBSERVER\
+didChange -> Property de\uc0\u287 i\u351 ece\u287 i anda \'e7a\u287 \u305 r\u305 l\u305 r\
+willChange -> Property de\uc0\u287 i\u351 meden \'f6nce \'e7a\u287 \u305 r\u305 rl\u305 r\
+struct Game\{\
+	var score = 0 \{\
+		didSet \{\
+			print("Score is \\(score) now")\
+			eski de\uc0\u287 er i\'e7in oldValue de\u287 eri kullan\u305 labilir\
+		\}\
+	\}\
+\}\
+willSet'in i\'e7inde newValue kullanabiliyoruz\
+didSet \'e7ok daha fazla kullan\uc0\u305 l\u305 yor\
+\
+CUSTOM INITIALIZER\
+var user = User(name:"yasin",age:25) \uc0\u351 eklinde \'e7a\u287 \u305 rabiliyorduk, istersek bunu \'f6zelle\u351 tirebiliriz\
+struct User\{\
+	var name:String\
+	var age:Int\
+	init(name:String,age:Int)\{\
+		self.name = name\
+		self.age = age\
+	\}\
+	init(name:String)\{\
+		self.name = name\
+		age = 25\
+	\}\
+\}\
+init i\'e7inde t\'fcm de\uc0\u287 erlere bir atama yap\u305 lm\u305 \u351  olmal\u305 , yani init biterken t\'fcm de\u287 i\u351 kenlerin bir de\u287 eri olmal\u305 \
+init i\'e7inde fonksiyon \'e7a\uc0\u287 \u305 rabiliriz ama tan\u305 mlamalardan sonra\
+init tan\uc0\u305 mlad\u305 ysak art\u305 k default initi kullanamay\u305 z\
+E\uc0\u287 er default initin kullan\u305 labilir olmas\u305 n\u305  istersek yeni initleri "extension" ile tan\u305 mlamal\u305 y\u305 z\
+extension User \{\
+	init()\{\
+		self.name = "yasin"\
+	\}\
+\}\
+\
+Closure i\'e7inde class'a ait bir de\uc0\u287 i\u351 kene eri\u351 mek istedi\u287 imizde "self" kullanmal\u305 y\u305 z\
+\
+ACCESS CONTROL\
+Kodumuzun istedi\uc0\u287 imiz k\u305 s\u305 mlar\u305 na eri\u351 im kontrol\'fc yapabilmemizi sa\u287 lar\
+private -> struct d\uc0\u305 \u351 \u305 ndan eri\u351 imi engeller\
+fileprivate -> mevcut dosya d\uc0\u305 \u351 \u305 ndan eri\u351 imi engeller\
+public -> herhangi bir yerden eri\uc0\u351 ilebilir\
+private(set) -> d\uc0\u305 \u351 ar\u305 dan okunabilsin ama set edilemesin\
+\
+struct'ta private de\uc0\u287 i\u351 ken varsa, default memberwise init olu\u351 turulmuyor\
+\
+\
+STATIC\
+struct'\uc0\u305 n instance'\u305 na de\u287 il de do\u287 rudan kendisine de\u287 i\u351 ken ekleyip i\u351 lem yapmak istedi\u287 imizde kullan\u305 r\u305 z\
+T\'fcm uygulamada kullanaca\uc0\u287 \u305 m\u305 z metot ve de\u287 i\u351 kenler i\'e7in idealdir\
+type annotation gerekli\
+static olmayan fonksiyon i\'e7inde static de\uc0\u287 i\u351 ken \'e7a\u287 \u305 ralaca\u287 \u305  zaman StructAdi.de\u287 i\u351 ken \u351 eklinde \'e7a\u287 \u305 r\u305 lmal\u305 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b\fs29 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 struct
+\f2\b0 \cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  \cf5 \strokec5 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 School\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  \{\
+    
+\f1\b \cf2 \strokec2 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 static
+\f2\b0 \cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  
+\f1\b \cf2 \strokec2 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 var
+\f2\b0 \cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  studentCount = \cf6 \strokec6 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 0\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 \
+    
+\f1\b \cf2 \strokec2 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 static
+\f2\b0 \cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  
+\f1\b \cf2 \strokec2 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 func
+\f2\b0 \cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 add\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 (student: \cf5 \strokec5 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 String\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 ) \{\
+        \cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 print\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 (\cf8 \strokec8 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 "\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 \\(\cf9 \strokec9 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 student\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 )\cf8 \strokec8 \shad\shadx0\shady-20\shadr0\shado0 \shadc0  joined the school."\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 )\
+        studentCount += \cf6 \strokec6 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 1\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 \
+    \}\
+\}
+\fs26\fsmilli13200 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 \
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 \cb1 \kerning1\expnd1\expndtw5
+\outl0\strokewidth0 \shad0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs29 \cf5 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec5 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 School\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 .\cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 add\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 (student: \cf8 \strokec8 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 "Taylor Swift"\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 )\
+\cf7 \strokec7 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 print\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 (\cf5 \strokec5 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 School\cf4 \strokec4 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 .studentCount)
+\fs26\fsmilli13200 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 \
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 \cb1 \kerning1\expnd1\expndtw5
+\outl0\strokewidth0 \shad0 \
+SwiftUI'da data i\'e7in class'lar, ui i\'e7in structlar kullan\uc0\u305 l\u305 rken; UIKit'te data i\'e7in structlar, ui i\'e7in classlar kullan\u305 l\u305 r!\
+\
+\
+CLASS\
+Struct'tan farkl\uc0\u305  olarak class'lar birbirlerinden kal\u305 t\u305 m alabilirler. Bundan dolay\u305  da default init yoktur, ya t\'fcm de\u287 i\u351 kenlere atama yap\u305 lm\u305 \u351  olmal\u305  ya da kendimiz init yazmal\u305 y\u305 z.\
+Class'lar\uc0\u305 n kopyalar\u305  ayn\u305  verileri payla\u351 \u305 r, birini de\u287 i\u351 tirirsek hepsi de\u287 i\u351 ir (reference type), structlar ise ba\u287 \u305 ms\u305 zd\u305 r (value type\
+)\
+Class constant olsa bile de\uc0\u287 i\u351 kenleri de\u287 i\u351 tirilebilir (mutating keywordu kullan\u305 lmaz), let olmayanlar\
+Son class kopyas\uc0\u305  yok edilince swift "deinitializer" \'e7al\u305 \u351 t\u305 r\u305 r\
+Classlardan class t\'fcretilmesi UIKit'te olduk\'e7a yayg\uc0\u305 n fakat SwiftUI'da o kadar yayg\u305 n de\u287 il\
+\
+class Game \{\
+	var score = 0 \{\
+		didSet \{\
+			print("Score is now \\(score)")\
+		\}\
+	\}\
+\}\
+var newGame = Game()\
+newGame.score += 10\
+\
+Classlarda memberwise initializer yok, kal\uc0\u305 t\u305 m ald\u305 \u287 \u305 m\u305 z class'a yeni \'f6zellikler ekledi\u287 imizi d\'fc\u351 \'fcnelim, yeni classlarda sorunlara yol a\'e7ard\u305 \
+\
+\
+INHERITANCE\
+Parent-Super -> Child-Subclass\
+\
+class Employee \{\
+	let hours : Int\
+\
+	init(hours:Int)\{\
+		self.hours = hours\
+	\}\
+\}\
+\
+class Developer : Employee \{\
+	func work()\{\
+		print("Writing code for \\(hours)")\
+	\}\
+\}\
+\
+let yasin = Developer (hours:8)\
+yasin.work()\
+\
+child parent'in fonksiyonunu de\uc0\u287 i\u351 tirmek isterse override etmeli\
+(overrride func funcName() \uc0\u351 eklinde)\
+\
+E\uc0\u287 er bir  class ba\u351 ka classlara inherit etmek istemiyorsa "final" yapabiliriz. Final classlar daha performansl\u305 d\u305 r.\
+\
+\
+CLASS INITIALIZERS\
+Subclass\uc0\u305 n initi yoksa otomatik olarak  parent\u305 n\u305 nkini al\u305 r\
+E\uc0\u287 er initi olacaksa, kendi tan\u305 mlamalar\u305 n\u305 n alt\u305 nda super.init() \'e7a\u287 \u305 rmal\u305 \
+\
+class Vehicle \{\
+	let isElectric: Bool\
+	init(isElectric: Bool)\{\
+		self.isElectric = isElectric\
+	\}\
+\}\
+\
+class Car : Vehicle \{\
+	let isConvertible: Bool\
+	init(isElectric: Bool, isConvertible: Bool)\{\
+		self.isConvertible = isConvertible\
+		super.init(isElectric: isElectric)\
+	\}\
+\}\
+\
+DEEP COPY\
+Bir class'\uc0\u305 n kopyas\u305 n\u305  olu\u351 turdu\u287 umuzda ayn\u305  verileri payla\u351 t\u305 \u287 \u305 n\u305  s\'f6ylemi\u351 tik, orijinali korumak istersek \u351 \'f6yle yapmal\u305 y\u305 z\
+\
+class User \{\
+	var username = "Yasin"\
+\
+	func copy() -> User \{\
+		let user = User()\
+		user.username = username\
+		return user\
+	\}\
+\}\
+\
+DEINITIALIZER\
+Class olu\uc0\u351 turulurken init \'e7a\u287 \u305 r\u305 l\u305 yordu, destroy edilirken de deinit \'e7a\u287 \u305 r\u305 l\u305 r\
+Asla parametre almaz ve return yapmaz, bundan dolay\uc0\u305  paranteze gerek duymaz\
+Do\uc0\u287 rudan \'e7a\u287 \u305 ramay\u305 z, sistem otomatik \'e7a\u287 \u305 r\u305 r\
+Structlarda yok \'e7\'fcnk\'fc kendilerini kopyalayam\uc0\u305 yorlar\
+\
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd1\expndtw5
+class User \{\
+	let id : Int\
+\
+	init (id: Int) \{\
+		self.id = id\
+		print("\\(id) created")\
+	\}\
+\
+	deinit \{\
+		print("\\(id) destroyed")\
+	\}\
+\}\
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd1\expndtw5
+\
+}
