@@ -1,6 +1,6 @@
 {\rtf1\ansi\ansicpg1254\cocoartf2709
 \cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset0 Menlo-Regular;
-}
+\f3\fswiss\fcharset0 Helvetica-Bold;}
 {\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red236\green0\blue121;
 \red247\green247\blue238;\red105\green227\blue255;\red159\green104\blue255;\red74\green215\blue253;\red247\green59\blue77;
 \red74\green201\blue164;\red246\green246\blue239;\red24\green24\blue28;}
@@ -587,6 +587,165 @@ Extension i\'e7inde custom init tan\uc0\u305 mlarsak swift'in default init'ini k
 Swifte Protocol Oriented Programming Language de denir :D\
 \
 Extension'\uc0\u305  protocol i\'e7in kullanabiliriz\
+\
+extension Int \{\
+	func squared() -> Int \{\
+		self * self\
+	\}\
+\}\
+\
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd1\expndtw5
+extension Numeric \{\
+	func squared() -> Self \{\
+		self * self\
+	\}\
+\}\kerning1\expnd1\expndtw5
+\
+Numeric = Int, Double\
+self = Current Value\
+Self = Current type\
+\
+Equatable, Comparable -> Bunlar\uc0\u305  structlar\u305 m\u305 za ekleyerek kar\u351 \u305 la\u351 t\u305 rma i\u351 lemleri yapabiliriz\
+\
+\
+OPTIONALS\
+Null References'a \'e7\'f6z\'fcm denebilir\
+De\uc0\u287 i\u351 kende veri oldu\u287 unu garantilemek i\'e7in kullan\u305 l\u305 r\
+Ya veri vard\uc0\u305 r ya da nil'dir\
+T\'fcm veri tipleri optional olabilir, arrayler ve dictionaryler dahil\
+\
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f3\b \cf0 if let
+\f0\b0  dictionaryValue = dictionary["Key"] \{\
+	print("The Value of the Key is \\(dictionaryValue)")\
+\} else \{\
+	print("No Value")\
+\} \
+\
+var number : Int? = nil (Bu \uc0\u351 ekilde tan\u305 mlanm\u305 \u351  de\u287 eri kullanabilmek i\'e7in \'f6ncelikle unwrap yapmal\u305 y\u305 z)\
+\
+if let unwrappedNumber = number \{\
+	print(square(number: uwrappedNumber))\
+\}\
+\
+unwrap ismini de\uc0\u287 i\u351 kenle ayn\u305  da yapabiliriz -> Shadowing\
+\
+\pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \kerning1\expnd1\expndtw5
+if let number = number \{\
+	print(square(number: number))\
+\}\kerning1\expnd1\expndtw5
+\
+\
+if let name = names.firstIndex(of:"Yasin")\{\
+	print("\\(name)")\
+\}\
+names optional olmamas\uc0\u305 na ra\u287 men "Yasin" de\u287 erini i\'e7erip i\'e7ermedi\u287 ini bilemeyiz, bundan dolay\u305  if let ile kullan\u305 r\u305 z\
+\
+guard let number = number else \{\
+	print("No Value")\
+\}\
+\
+"if let" ten farkl\uc0\u305  olarak "guard let else" i\'e7inde veri olmad\u305 \u287 \u305 nda \'e7al\u305 \u351 \u305 r\
+guard let'i inputlar\uc0\u305 n, return'lerin valid olup olmad\u305 \u287 \u305 n\u305  kontrol etmek i\'e7in kullan\u305 r\u305 z\
+\
+func printSquare(of number: Int?)\{\
+	guard let number = number else\{\
+		print("No Value")\
+		return\
+	\}\
+	print("Square of \\(number) is \\(number * number)")\
+\}\
+\
+guard'\uc0\u305  unwraps\u305 z da kullanabiliriz, else olmal\u305 \
+guard someArray.isEmpty else \{\
+	return\
+\}\
+\
+guard'da mutlaka fonksiyon return etmeli\
+\
+Nil Coalescing -> Optional nil ise default de\uc0\u287 er veriyoruz\
+\
+let users = [\
+	"yasin" : "ytu",\
+	"yakup": "itu"\
+]\
+\
+let user = users["zeynep"] ?? "N/A" \
+(let user = users["zeynep",default:"N/A"])\
+\
+struct Book \{\
+	let title : String\
+	let author : String?\
+\}\
+let book = Book(title: "Beowulf",author:nil)\
+let author = book.author ?? "Anonymous"\
+\
+let input = ""\
+let number = Int(input) ?? 0\
+\
+let input2 = "a"\
+let number = Int(input) ?? Int(input2) ?? 0\
+\
+OPTIONAL CHAIN\
+\kerning1\expnd1\expndtw5
+struct Book \{\
+	let title : String\
+	let author : String?\
+\}\
+\
+var book: Book? = nil\
+let author = book?.author?.first?.uppercased() ?? "A"\kerning1\expnd1\expndtw5
+\
+\
+OPTIONAL TRY\
+Hata alabilece\uc0\u287 imiz fonksiyonlarda try? kal\u305 b\u305 n\u305  kullan\u305 rsak fonksiyonun d\'f6n\'fc\u351 \'fcn\'fc optional yapabiliriz.\
+\
+if let user = try? getUser(id:23)\{\
+	print("User: \\(user)")\
+\}\
+let user = (try? getUser(id:23)) ?? "Anonymous"\
+\
+guard let ile kullan\uc0\u305 labilir, nil d\'f6nmesi halinde fonksiyondan \'e7\u305 k\u305 l\u305 r\
+\
+D\'f6nen hatan\uc0\u305 n tipi \'e7ok \'f6nemli de\u287 ilse, yani fonksiyonun \'e7al\u305 \u351 \u305 p \'e7al\u305 \u351 mamas\u305  \'f6nemliyse optional try kullan\u305 r\u305 z.\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 \
 \
 \
