@@ -7,15 +7,53 @@
 
 import SwiftUI
 
+struct CapsuleText: View {
+    var text: String
+    var body: some View {
+        Text(text)
+            .font(.largeTitle)
+            .padding()
+            .foregroundColor(.white)
+            .background(.orange)
+            .clipShape(Capsule())
+    }
+}
+
+struct Watermark: ViewModifier {
+    var text: String
+    func body(content: Content) -> some View {
+        content
+        Text(text)
+            .font(.caption)
+            .foregroundColor(.white)
+            .padding(5)
+            .background(.black)
+    }
+}
+
+struct LargeBlueFont: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.blue)
+    }
+}
+extension View {
+    func largeBlueFonted() -> some View {
+        modifier(LargeBlueFont())
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            CapsuleText(text: "First")
+            CapsuleText(text: "Second")
+            Text("Yasin")
+                .modifier(Watermark(text:"Aktaş"))
+            Text("Yakup")
+                .largeBlueFonted()
         }
-        .padding()
     }
 }
 

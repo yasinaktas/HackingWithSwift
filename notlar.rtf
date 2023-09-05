@@ -891,19 +891,98 @@ VStack, View protokol\'fcne sahip olmas\uc0\u305 na ra\u287 men nas\u305 l oluyo
 Swift, body'e @ViewBuilder \'f6zelli\uc0\u287 ini uyguluyor, geriye bir tane TupleView d\'f6n\'fcyor\
 \
 \
+Modifier'larda ternary operator kullanabiliyoruz\
+.foregroundColor(showRed ? .red : .blue)\
+\
+Environment Modifiers -> D\uc0\u305 \u351 taki view'a uygulanan modifier i\'e7eridekilere de uygulanm\u305 \u351  olur, i\'e7erideki viewlar bu modifier'\u305  override edebilirler. Override edilen modifierlar environmet ise replace edilir(.font() gibi), de\u287 ilse \'fczerine eklenir(.blur() gibi)\
+\
+VStack\{\
+\}\
+.font(.title) -> environment modifier\
+.blur(radius:5) -> regular modifier\
+\
+View Property'ler olu\uc0\u351 turup kullanabiliriz\
+var texts: some View \{\
+	VStack\{\
+		Text("1")\
+		Text("2")\
+	\}\
+\}\
+var texts: some View \{\
+	Group\{\
+		Text("1")\
+		Text("2")\
+	\}\
+\}\
+@ViewBuilder var texts: some View \{\
+	Text("1")\
+	Text("2")\
+\}\
+\
+View'lar\uc0\u305  ayr\u305 ca olu\u351 turup kullanabiliriz\
+struct CapsuleText: View \{\
+	var text: String\
+	var body: some View \{\
+		Text(text)\
+			.font(.largeTitle)\
+			.padding()\
+			.foregroundColor(.blue)\
+			.clipShape(Capsule())\
+	\}\
+\}\
+struct ContentView: View \{\
+	var body: some View \{\
+		VStack(spacing:10)\{\
+			CapsuleText(text: "First")\
+				.background(.orange)\
+			CapsuleText(text: "Second")\
+		\}\
+	\}\
+\}\
 \
 \
+CUSTOM MODIFIERS\
+Kendimiz de modifier olu\uc0\u351 turup kullanabiliriz\
+Bunun i\'e7in ViewModifier protokol\'fcn\'fc kullanan bir struct olu\uc0\u351 turmal\u305 y\u305 z some View d\'f6nd\'fcren func body fonksiyonu yazmal\u305 y\u305 z, i\'e7ine content: Content alacak\
 \
+struct Title: ViewModifier \{\
+	func body (content: Content) -> some View \{\
+		content\
+			.font(.largeTitle)\
+			.foreground(.white)\
+	\}\
+\}\
+Text("Hello")\
+	.modifier(Title())\
 \
+.modifier() i\'e7inde de\uc0\u287 il de do\u287 rudan kullanmak istersek extension'dan faydalanabiliriz\
 \
+extension View \{\
+	func titleStyle() -> some View \{\
+		modifier(Title())\
+	\}\
+\}\
+Text("Hello")\
+	.titleStyle()\
 \
+Custom modifier View d\'f6nd\'fcrd\'fc\uc0\u287 \'fc i\'e7in farkl\u305  \u351 ekillerde kullan\u305 labilir\
 \
-\
-\
-\
-\
-\
-\
+struct Watermark: ViewModifier \{\
+	var text: String\
+	func body(content: Content) -> some View \{\
+		content\
+		Text(text)\
+			.font(.caption)\
+			.foregroundColor(.white)\
+			.padding(5)\
+			.background(.black)\
+	\}\
+\}\
+extension View \{\
+	func watermarked(with text: String) -> some View \{\
+		modifier(Watermark(text:text))\
+	\}\
+\}\
 \
 \
 \
