@@ -5,7 +5,7 @@
 \red24\green24\blue28;}
 {\*\expandedcolortbl;;\cssrgb\c0\c1\c1;\cssrgb\c100000\c100000\c100000\c0;\cssrgb\c97255\c97255\c94902;
 \cssrgb\c12549\c12549\c14510;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww10460\viewh17860\viewkind0
+\paperw11900\paperh16840\margl1440\margr1440\vieww10100\viewh17860\viewkind0
 \pard\tx564\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\b\fs72 \cf0 \kerning1\expnd1\expndtw5
@@ -983,6 +983,55 @@ extension View \{\
 		modifier(Watermark(text:text))\
 	\}\
 \}\
+\
+\
+Stepper("Select a number",value: $selectedNumber, in: 2...8, step: 2)\
+\
+@State private var selectedDate = Date.now\
+DatePicker("Please select a date", in: Date.now..., selection: $selectedDate, displayedComponents: .hourAndMinute)\
+	.labelsHidden()\
+\
+displayedComponent -> eklenmezse default olarak g\'fcn ay y\uc0\u305 l saat ve dakika g\'f6sterilir, .hoursAndMinute ve .date se\'e7enekleri vard\u305 r\
+\
+in: Date.now... -> Tek tarafl\uc0\u305  range belirtir\
+in: Date.now...Date.now.addingTimeInterval(86400)\
+\
+var components = DateComponents()\
+components.hour = 8\
+components.minute = 0\
+lat date = Calendar.current.date(from: components) ?? Date.now\
+\
+let components = Calendar.current.dateComponents([.hour, .minute], from: someDate)\
+let hour = components.hour ?? 0\
+\
+Text(Date.now, format: .dateTime.hour().minute())\
+Text(Date.now, format: .dateTime.day().month().year())\
+\
+Text(Date.now.formatted(date: .long, time: .shortened))\
+\
+\
+LISTS\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 \
 \
 \

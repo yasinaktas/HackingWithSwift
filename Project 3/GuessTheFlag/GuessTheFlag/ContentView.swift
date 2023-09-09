@@ -49,7 +49,7 @@ struct ContentView: View {
                     Button{
                         flagTapped(number)
                     }label:{
-                        FlagImage(imageName: countries[number])
+                        CountryImage(country: countries[number])
                     }
                 }
                 Text("Your score is \(score)")
