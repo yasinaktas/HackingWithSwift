@@ -1011,31 +1011,70 @@ Text(Date.now.formatted(date: .long, time: .shortened))\
 \
 \
 LISTS\
+UIKitteki UITableView'\uc0\u305 n kar\u351 \u305 l\u305 \u287 \u305 d\u305 r.\
+Scroll edilebilir veri tablosu sunar.\
+Form, \'f6zelle\uc0\u351 tirilmi\u351  bir list'tir.\
+\
+List i\'e7ine statik ve dinamik (ForEach) de\uc0\u287 erler alabilir\
+De\uc0\u287 erler section'lanabilir\
+\
+List\{\
+	Section\{\
+		Text("Yasin")\
+		Text("Akta\uc0\u351 ")\
+	\}\
+	ForEach(0..<3)\{ number in\
+		Text("\\(number)")\
+	\}\
+\}\
+\
+let people = ["Yasin","Celal","\'d6mer"]\
+List(people, id: \\.self)\{\
+	Text($0)\
+\}\
+\
+RESOURCE in APP BUNDLE\
+\
+if let fileURL = Bundle.main.url(forResource: "fileName",withExtension: "txt")\{\
+	// Dosya bulundu\
+	if let fileContent = try? String(contentOf: fileURL)\{\
+		// String format\uc0\u305 nda dosya i\'e7eri\u287 i\
+	\}\
+\}\
+\
+Bunu bir fonksiyon i\'e7inde yapar\uc0\u305 z ve uygulama ba\u351 lay\u305 nca ayarlanmas\u305  i\'e7in .onAppear(perform: fonksiyonAdi) olarak \'e7a\u287 \u305 r\u305 r\u305 z\
+\
+BAZI STRING FONKS\uc0\u304 YONLARI\
+let input = "a, b, c"\
+let letters = input.components(separatedBy: ", ")\
+let letter = letters.randomElement()\
+let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewLines)\
+\
+.whitespacesAndNewLines CharacterSet struct'\uc0\u305 nda yer al\u305 r.\
+\
+UITextChecker -> UIKit i\'e7indedir ve Objective-C ile yaz\uc0\u305 lm\u305 \u351 t\u305 r, bundan dolay\u305  nil de\u287 il de NSNotFound d\'f6nd\'fcr\'fcr\
+\
+let word = "swift"\
+let checker = UITextChecker()\
+let range = NSRange(location: 0, length: word.utf16.count)\
+\
+utf-16 -> character encoding\
+\
+let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")\
+\
+let allGood = misspelledRange.location == NSNotFound\
 \
 \
+Viewlar\uc0\u305 n herhangi birine eklenen .onSubmit() modifier'\u305 , herhangi bir text girilince tetiklenir. .onSubmit() i\'e7ine, parametre almayan ve return yapmayan bir fonksiyon al\u305 r.\
+\
+.onSubmit(addNewWord) \
+\
+\uc0\u304 lk harfi otomatik b\'fcy\'fctmeyi kapatmam\u305 z\u305  sa\u287 lar\
+TextField("Enter text",text:$text)\
+	.textInputAutocapitalization(.never)\
 \
 \
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+fatalError("\uc0\u304 stenen \u351 ey yap\u305 lamad\u305 ") \u351 eklinde bir ekleme ile uygulaman\u305 n a\'e7\u305 lmas\u305 n\u305  engelleyebiliriz\
 \
 \
 \
